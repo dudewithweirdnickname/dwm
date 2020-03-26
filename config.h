@@ -8,13 +8,13 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#222222";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#900000";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
@@ -67,6 +67,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo true") },
 	{ MODKEY|ShiftMask,             XK_equal,  spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo false") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY          ,             XK_Escape, spawn,          SHCMD("prompt.sh 'Kill Xorg?' 'killall Xorg'") },
+	{ MODKEY          ,             XK_Print,  spawn,          SHCMD("scrot -d 1 ~/Pictures/screenshots/'%d-%m-%y-%h-%m-%s'.png") },
 	/* top row */
 	{ MODKEY          ,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("firefox") },
@@ -88,6 +90,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_l,      incnmaster,     {.i = -1 } },
 	/* bottom row */
+	{ MODKEY,                       XK_x,      spawn,          SHCMD("slock") },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("prompt.sh 'Shutdown?' 'shutdown -h now'") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_n,      spawn,          SHCMD("st -e newsboat") },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("st -e .config/newsboat/urls") },
