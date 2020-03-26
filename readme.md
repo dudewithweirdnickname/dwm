@@ -15,6 +15,9 @@
 * Sh-Sl to change move windows from stack to master and back
 
 ### todo:
+
+#### !urgent one: find a way to reapply p2, uselessgap looks ugly
+
 * figure out rest of the keys
 * check if they're ok for workflow
 * plan modmask keys for daily stuff and shiftmask keys for wm shinanigan
