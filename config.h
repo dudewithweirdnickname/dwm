@@ -62,9 +62,9 @@ static const char *termcmd[]  = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -10%") },
-	{ MODKEY,                       XK_equals, spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +10%") },
+	{ MODKEY,                       XK_equal, spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +10%") },
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo true") },
-	{ MODKEY|ShiftMask,             XK_equals, spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo false") },
+	{ MODKEY|ShiftMask,             XK_equal, spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo false") },
 
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 
