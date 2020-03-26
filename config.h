@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int snap      = 0;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
@@ -44,7 +44,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -60,25 +60,25 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
+	/* so, i guess, modkey for primary stuff and shiftmask for secondary */
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -10%") },
-	{ MODKEY,                       XK_equal, spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +10%") },
+	{ MODKEY,                       XK_equal,  spawn,          SHCMD("pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +10%") },
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo true") },
-	{ MODKEY|ShiftMask,             XK_equal, spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo false") },
-
+	{ MODKEY|ShiftMask,             XK_equal,  spawn,          SHCMD("pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo false") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-
+	/* top row */
 	{ MODKEY          ,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("firefox") },
 	{ MODKEY,                       XK_e,      spawn,          SHCMD("st -e nvim") },
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("zathura") },
 	{ MODKEY,                       XK_t,      spawn,          SHCMD("telegram-desktop") },
 	{ MODKEY,                       XK_y,      spawn,          SHCMD("freetube-bin") },
-
+	/* middle row */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_f,      spawn,          SHCMD("st -e nnn") },
 	{ MODKEY,                       XK_g,      spawn,          SHCMD("gimp") },
-
+	/* movement */
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_h,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -87,7 +87,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_l,      incnmaster,     {.i = -1 } },
-
+	/* bottom row */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_n,      spawn,          SHCMD("st -e newsboat") },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("st -e .config/newsboat/urls") },
